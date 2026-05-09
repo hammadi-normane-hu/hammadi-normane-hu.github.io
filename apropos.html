@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>À propos - Normane Hammadi</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --navy: #1f3a5f;
+  --navy-dark: #16324d;
+  --gold: #c9a84c;
+  --light-bg: #f7f5f0;
+  --text: #1a1a1a;
+  --text-muted: #5a5a5a;
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  color: var(--text);
+  background: #fff;
+  min-height: 100vh;
+}
+
+/* ===== NAVBAR ===== */
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  background: rgba(15, 25, 45, 0.95);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+  padding: 0 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+}
+.nav-logo {
+  font-family: 'Playfair Display', serif;
+  color: white;
+  font-size: 20px;
+  text-decoration: none;
+}
+.nav-links {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+}
+.nav-links a {
+  color: rgba(255,255,255,0.8);
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+  transition: color 0.2s;
+  position: relative;
+  padding-bottom: 4px;
+}
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 0; height: 2px;
+  background: var(--gold);
+  transition: width 0.25s;
+}
+.nav-links a:hover { color: white; }
+.nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+.nav-links a.active { color: white; }
+
+/* ===== HERO ===== */
+.hero {
+  background: url("https://images.unsplash.com/photo-1492724441997-5dc865305da7") center/cover no-repeat;
+  height: 320px;
+  display: flex;
+  align-items: flex-end;
+  padding: 0 0 50px;
+  position: relative;
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 20, 40, 0.72);
+}
+.hero-content {
+  position: relative;
+  max-width: 860px;
+  margin: auto;
+  width: 100%;
+  padding: 0 20px;
+  color: white;
+}
+.hero-content h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 42px;
+  margin-bottom: 10px;
+}
+.gold-line {
+  width: 50px;
+  height: 2px;
+  background: var(--gold);
+}
+
+/* ===== CONTENT ===== */
+.page-content {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 60px 20px 80px;
+}
+
+.personal-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 28px;
+  margin-bottom: 50px;
+}
+
+.personal-card {
+  background: var(--light-bg);
+  border-radius: 16px;
+  padding: 32px 28px;
+  flex: 1;
+  min-width: 260px;
+}
+.personal-card-title {
+  font-size: 13px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--gold);
+  margin-bottom: 16px;
+}
+.personal-card p {
+  font-size: 16px;
+  line-height: 1.85;
+  color: var(--text-muted);
+}
+
+/* ===== TEXTAREA pour écrire soi-même ===== */
+.editable-block {
+  background: var(--light-bg);
+  border-radius: 16px;
+  padding: 32px 28px;
+  margin-bottom: 28px;
+}
+.editable-block h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 26px;
+  color: var(--navy);
+  margin-bottom: 8px;
+}
+.editable-block .sub {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 20px;
+}
+.editable-block p {
+  font-size: 16px;
+  line-height: 1.85;
+  color: var(--text-muted);
+}
+
+.interests-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.interest-tag {
+  background: white;
+  border: 1.5px solid #e0dbd0;
+  border-radius: 99px;
+  padding: 7px 18px;
+  font-size: 14px;
+  color: var(--navy);
+  font-weight: 500;
+}
+
+/* ===== BACK BUTTON ===== */
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 40px;
+  color: var(--navy);
+  font-weight: 500;
+  font-size: 15px;
+  text-decoration: none;
+  border: 1.5px solid #d0cdc5;
+  border-radius: 99px;
+  padding: 8px 20px;
+  transition: background 0.2s, border-color 0.2s;
+}
+.back-btn:hover {
+  background: var(--light-bg);
+  border-color: var(--navy);
+}
+
+.interest-sub {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+  margin-top: 28px;
+}
+.interest-sub:first-of-type {
+  margin-top: 24px;
+}
+.interest-text {
+  flex: 1;
+}
+.interest-text h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  color: var(--navy);
+  margin-bottom: 10px;
+}
+.interest-text p {
+  font-size: 15px;
+  line-height: 1.85;
+  color: var(--text-muted);
+}
+.interest-photo {
+  width: 260px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 12px;
+  flex-shrink: 0;
+}
+
+/* ===== FOOTER ===== */
+footer {
+  background: var(--navy);
+  color: rgba(255,255,255,0.7);
+  text-align: center;
+  padding: 28px 20px;
+  font-size: 14px;
+}
+footer span { color: var(--gold); }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <a href="normane_hammadi.html" class="nav-logo">N. Hammadi</a>
+  <ul class="nav-links">
+    <li><a href="normane_hammadi.html">Accueil</a></li>
+    <li><a href="apropos.html" class="active">À propos</a></li>
+    <li><a href="normane_hammadi.html#services">Services</a></li>
+    <li><a href="normane_hammadi.html#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-content">
+    <h1>À propos de moi</h1>
+    <div class="gold-line"></div>
+  </div>
+</div>
+
+<!-- CONTENU -->
+<div class="page-content">
+
+  <a href="normane_hammadi.html" class="back-btn">← Retour à l'accueil</a>
+
+  <!-- Qui suis-je -->
+  <div class="editable-block">
+    <h2>Qui suis-je ?</h2>
+    <p class="sub"><!-- date ou contexte optionnel --></p>
+    <p>
+      <!-- ✏️ Écris ici ton paragraphe personnel. Parle de toi, de ta personnalité, de ce qui te définit en dehors du travail. -->
+      Je suis Normane Hammadi, électromécanicien basé en Belgique. Curieux de nature, j'aime comprendre le fonctionnement des choses et trouver des solutions concrètes. Je suis quelqu'un de rigoureux, fiable et toujours prêt à apprendre.
+    </p>
+  </div>
+
+  <!-- Deuxième paragraphe libre -->
+  <div class="editable-block">
+    <h2>Ma vision du métier</h2>
+    <p>
+      <!-- ✏️ Ajoute un second paragraphe si tu veux — par exemple ta philosophie de travail, ce que tu aimes dans ce métier, tes objectifs. Supprime ce bloc si tu n'en as pas besoin. -->
+      Pour moi, l'électromécanique c'est bien plus que réparer des machines. C'est comprendre un système dans sa globalité, anticiper les problèmes avant qu'ils surviennent, et garantir la continuité de la production. C'est ce défi quotidien qui me passionne.
+    </p>
+  </div>
+
+  <!-- Centres d'intérêt -->
+  <div class="editable-block">
+    <h2>Mes centres d'intérêt</h2>
+
+    <div class="interest-sub">
+      <div class="interest-text">
+        <h3>Sport</h3>
+        <p>Passionné de sport en général, le MMA et le basket sont les deux sports auxquels j'ai consacré le plus d'heures. Esprit d'équipe, résilience et détermination — le sport m'a inculqué des valeurs qui me suivent au quotidien.</p>
+      </div>
+      <img src="sport_photo.jpg" alt="Photo sport MMA" class="interest-photo">
+    </div>
+
+    <div class="interest-sub">
+      <div class="interest-text">
+        <h3>Musique</h3>
+        <p>Ayant grandi avec des parents passionnés de musique, il est normal que je le sois devenu aussi. Un bon travail est toujours accompagné par de la bonne musique.</p>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<footer>
+  <p>© 2025 <span>Normane Hammadi</span> — Électromécanicien</p>
+</footer>
+
+</body>
+</html>

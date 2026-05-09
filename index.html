@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Normane Hammadi - Électromécanicien</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --navy: #1f3a5f;
+  --navy-dark: #16324d;
+  --gold: #c9a84c;
+  --light-bg: #f7f5f0;
+  --text: #1a1a1a;
+  --text-muted: #5a5a5a;
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  color: var(--text);
+  background: #fff;
+}
+
+/* ===== NAVBAR ===== */
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  background: rgba(15, 25, 45, 0.0);
+  backdrop-filter: blur(0px);
+  transition: background 0.3s, backdrop-filter 0.3s, box-shadow 0.3s;
+  padding: 0 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+}
+nav.scrolled {
+  background: rgba(15, 25, 45, 0.95);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+}
+.nav-logo {
+  font-family: 'Playfair Display', serif;
+  color: white;
+  font-size: 20px;
+  text-decoration: none;
+}
+.nav-links {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+}
+.nav-links a {
+  color: rgba(255,255,255,0.8);
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+  transition: color 0.2s;
+  position: relative;
+  padding-bottom: 4px;
+}
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 0; height: 2px;
+  background: var(--gold);
+  transition: width 0.25s;
+}
+.nav-links a:hover { color: white; }
+.nav-links a:hover::after { width: 100%; }
+
+/* ===== PERSONAL SECTION ===== */
+.personal {
+  background: #fff;
+  padding: 90px 20px;
+  text-align: center;
+}
+.personal h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 34px;
+  margin-bottom: 8px;
+}
+.personal-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px;
+  max-width: 860px;
+  margin: 40px auto 0;
+  text-align: left;
+}
+.personal-card {
+  background: var(--light-bg);
+  border-radius: 16px;
+  padding: 28px 24px;
+  flex: 1;
+  min-width: 240px;
+  max-width: 380px;
+}
+.personal-card-title {
+  font-size: 13px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--gold);
+  margin-bottom: 14px;
+}
+.personal-card p {
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--text-muted);
+}
+.interests-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.interest-tag {
+  background: white;
+  border: 1.5px solid #e0dbd0;
+  border-radius: 99px;
+  padding: 6px 16px;
+  font-size: 14px;
+  color: var(--navy);
+  font-weight: 500;
+}
+
+/* ===== HEADER ===== */
+header {
+  background: url("https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc") center/cover no-repeat;
+  height: 100vh;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: relative;
+}
+header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 25, 45, 0.65);
+}
+header > * { position: relative; }
+header h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(38px, 6vw, 64px);
+  letter-spacing: -0.5px;
+}
+header p {
+  font-size: clamp(16px, 2vw, 20px);
+  color: rgba(255,255,255,0.8);
+  margin-top: 12px;
+  max-width: 520px;
+}
+.header-line {
+  width: 60px;
+  height: 2px;
+  background: var(--gold);
+  margin: 20px auto;
+}
+
+/* ===== À PROPOS ===== */
+.about {
+  position: relative;
+  color: white;
+  padding: 100px 20px;
+  text-align: center;
+  background: url("https://images.unsplash.com/photo-1492724441997-5dc865305da7") center/cover no-repeat;
+}
+.about::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 20, 40, 0.72);
+}
+.about .inner {
+  position: relative;
+  max-width: 720px;
+  margin: auto;
+}
+.about h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 36px;
+  margin-bottom: 10px;
+}
+.about .gold-line {
+  width: 50px;
+  height: 2px;
+  background: var(--gold);
+  margin: 14px auto 28px;
+}
+.about p {
+  font-size: 17px;
+  line-height: 1.8;
+  color: rgba(255,255,255,0.88);
+  margin-bottom: 14px;
+}
+
+/* ===== SERVICES ===== */
+.services {
+  background: var(--light-bg);
+  padding: 90px 20px;
+  text-align: center;
+}
+.services h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 34px;
+  margin-bottom: 8px;
+}
+.section-line {
+  width: 50px;
+  height: 2px;
+  background: var(--gold);
+  margin: 12px auto 40px;
+}
+.service-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px;
+  max-width: 900px;
+  margin: auto;
+}
+.service-box {
+  background: white;
+  border-radius: 16px;
+  padding: 32px 24px;
+  width: 240px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.service-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+}
+.service-icon {
+  font-size: 36px;
+  margin-bottom: 14px;
+}
+.service-box h3 {
+  font-size: 17px;
+  font-weight: 500;
+  margin-bottom: 8px;
+  color: var(--navy);
+}
+.service-box p {
+  font-size: 14px;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+
+
+/* ===== FORMULAIRE ===== */
+.form-section {
+  background: url("https://images.unsplash.com/photo-1518770660439-4636190af475") center/cover no-repeat;
+  padding: 90px 20px;
+  text-align: center;
+  color: white;
+  position: relative;
+}
+.form-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(10,20,40,0.72);
+}
+.form-section > * { position: relative; }
+.form-section h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 34px;
+  margin-bottom: 8px;
+}
+.form-section p {
+  color: rgba(255,255,255,0.8);
+  margin-bottom: 32px;
+  font-size: 16px;
+}
+form {
+  background: white;
+  color: var(--text);
+  padding: 32px 28px;
+  border-radius: 16px;
+  max-width: 440px;
+  margin: auto;
+  text-align: left;
+}
+.form-group {
+  margin-bottom: 16px;
+}
+label {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+input, textarea, select {
+  width: 100%;
+  padding: 11px 14px;
+  border-radius: 9px;
+  border: 1.5px solid #ddd;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  color: var(--text);
+  background: #fafafa;
+  transition: border-color 0.2s;
+  outline: none;
+}
+input:focus, textarea:focus, select:focus {
+  border-color: var(--navy);
+  background: #fff;
+}
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+textarea {
+  resize: vertical;
+  min-height: 90px;
+}
+button[type="submit"] {
+  width: 100%;
+  padding: 13px;
+  background: var(--navy);
+  color: white;
+  border: none;
+  border-radius: 9px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+  margin-top: 6px;
+}
+button[type="submit"]:hover { background: var(--navy-dark); }
+button[type="submit"]:active { transform: scale(0.98); }
+button[type="submit"]:disabled { background: #999; cursor: not-allowed; }
+
+.form-message {
+  margin-top: 14px;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 14px;
+  text-align: center;
+  display: none;
+}
+.form-message.success {
+  background: #e8f5e9;
+  color: #2e7d32;
+  border: 1px solid #a5d6a7;
+  display: block;
+}
+.form-message.error {
+  background: #fdecea;
+  color: #c62828;
+  border: 1px solid #ef9a9a;
+  display: block;
+}
+
+/* ===== FOOTER ===== */
+footer {
+  background: var(--navy);
+  color: rgba(255,255,255,0.7);
+  text-align: center;
+  padding: 28px 20px;
+  font-size: 14px;
+}
+footer span { color: var(--gold); }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <a href="#accueil" class="nav-logo">N. Hammadi</a>
+  <ul class="nav-links">
+    <li><a href="#accueil">Accueil</a></li>
+    <li><a href="apropos.html">Ma personne</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HEADER -->
+<header id="accueil">
+  <h1>Normane Hammadi</h1>
+  <div class="header-line"></div>
+  <p>Électromécanicien passionné par la performance et la précision</p>
+</header>
+
+<!-- À PROPOS -->
+<section class="about" id="apropos">
+  <div class="inner">
+    <h2>À propos de moi</h2>
+    <div class="gold-line"></div>
+    <p>Je suis quelqu'un de passionné par le fonctionnement des machines et les systèmes techniques. Ce qui me motive, c'est de comprendre, analyser et réparer efficacement.</p>
+    <p>J'aime le travail bien fait, précis, et je cherche toujours à m'améliorer pour devenir un électromécanicien compétent et fiable.</p>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <h2>Mes services</h2>
+  <div class="section-line"></div>
+  <div class="service-grid">
+    <div class="service-box">
+      <div class="service-icon">⚙️</div>
+      <h3>Maintenance</h3>
+      <p>Suivi régulier et entretien préventif des équipements et machines industrielles.</p>
+    </div>
+    <div class="service-box">
+      <div class="service-icon">🔍</div>
+      <h3>Diagnostic</h3>
+      <p>Recherche et analyse approfondie des pannes électriques et mécaniques.</p>
+    </div>
+    <div class="service-box">
+      <div class="service-icon">🔧</div>
+      <h3>Réparation</h3>
+      <p>Intervention rapide et efficace pour remettre vos machines en état de marche.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- FORMULAIRE -->
+<section class="form-section" id="contact">
+  <h2>Prendre rendez-vous</h2>
+  <div class="section-line" style="margin:14px auto 16px;"></div>
+  <p>Besoin d'une intervention ou d'un diagnostic ? Contactez-moi directement ici.</p>
+  <form id="contact-form">
+    <div class="form-row">
+      <div class="form-group">
+        <label for="name">Nom</label>
+        <input type="text" id="name" name="from_name" placeholder="Votre nom" required>
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="reply_to" placeholder="votre@email.com" required>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label for="date">Date souhaitée</label>
+        <input type="date" id="date" name="date" required>
+      </div>
+      <div class="form-group">
+        <label for="time">Heure</label>
+        <input type="time" id="time" name="time" required>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="service">Type d'intervention</label>
+      <select id="service" name="service">
+        <option value="">Choisir un service...</option>
+        <option value="Maintenance">Maintenance</option>
+        <option value="Diagnostic">Diagnostic de panne</option>
+        <option value="Réparation">Réparation</option>
+        <option value="Autre">Autre</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="message">Message</label>
+      <textarea id="message" name="message" placeholder="Décrivez votre problème ou demande..."></textarea>
+    </div>
+    <button type="submit" id="submit-btn">Envoyer la demande</button>
+    <div class="form-message" id="form-message"></div>
+  </form>
+</section>
+
+<footer>
+  <p>© 2025 <span>Normane Hammadi</span> — Électromécanicien</p>
+</footer>
+
+<script>
+// ===== NAVBAR SCROLL =====
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 60);
+});
+
+// ===== SMOOTH SCROLL =====
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) target.scrollIntoView({ behavior: 'smooth' });
+  });
+});
+
+// ===== EMAILJS CONTACT FORM =====
+// To activate the form:
+// 1. Sign up free at https://www.emailjs.com
+// 2. Create an Email Service and an Email Template
+// 3. Replace the 3 values below with your own IDs
+const EMAILJS_PUBLIC_KEY  = 'VOTRE_PUBLIC_KEY';   // ← remplacez
+const EMAILJS_SERVICE_ID  = 'VOTRE_SERVICE_ID';   // ← remplacez
+const EMAILJS_TEMPLATE_ID = 'VOTRE_TEMPLATE_ID';  // ← remplacez
+
+emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+
+document.getElementById('contact-form').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const btn = document.getElementById('submit-btn');
+  const msg = document.getElementById('form-message');
+  msg.className = 'form-message';
+  msg.style.display = 'none';
+  btn.disabled = true;
+  btn.textContent = 'Envoi en cours...';
+
+  // Basic validation
+  const missingConfig = EMAILJS_PUBLIC_KEY === 'VOTRE_PUBLIC_KEY';
+  if (missingConfig) {
+    msg.className = 'form-message error';
+    msg.textContent = '⚠️ Formulaire non configuré. Veuillez suivre les instructions EmailJS dans le code.';
+    btn.disabled = false;
+    btn.textContent = 'Envoyer la demande';
+    return;
+  }
+
+  try {
+    await emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, this);
+    msg.className = 'form-message success';
+    msg.textContent = '✅ Demande envoyée ! Je vous recontacterai rapidement.';
+    this.reset();
+  } catch (err) {
+    msg.className = 'form-message error';
+    msg.textContent = '❌ Erreur lors de l\'envoi. Veuillez réessayer ou me contacter par email.';
+    console.error('EmailJS error:', err);
+  }
+  btn.disabled = false;
+  btn.textContent = 'Envoyer la demande';
+});
+</script>
+</body>
+</html>
